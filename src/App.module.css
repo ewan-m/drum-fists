@@ -1,0 +1,36 @@
+.poseContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  border-radius: var(--spacerSm);
+  place-items: left;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--foreground);
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.poseContainer > * {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--spacerLg);
+  width: 100%;
+}
+
+.controls {
+  z-index: 99;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: var(--spacerSm);
+  gap: var(--spacerSm);
+}
