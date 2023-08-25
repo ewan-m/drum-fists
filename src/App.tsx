@@ -97,23 +97,32 @@ export const App = () => {
 
   // const segmentationCanvas = useSegmentationCanvas(webcamRef.current);
 
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
   return (
-    <div className={style.pageContainer}>
-      <div className={style.poseContainer} id="poseContainer">
-        <video
-          className={style.webcam}
-          ref={webcamRef}
-          autoPlay
-          muted
-          playsInline
-        ></video>
-        <canvas
-          className={style.webcam}
-          ref={canvasRef}
-          width={1920}
-          height={1080}
-        ></canvas>
-      </div>
+    <div className={style.camContainer}>
+      <video
+        className={style.webcam}
+        style={{
+          width,
+          height,
+        }}
+        ref={webcamRef}
+        autoPlay
+        muted
+        playsInline
+      ></video>
+      <canvas
+        className={style.webcam}
+        ref={canvasRef}
+        style={{
+          width,
+          height,
+        }}
+        width={1920}
+        height={1080}
+      ></canvas>
     </div>
   );
 };

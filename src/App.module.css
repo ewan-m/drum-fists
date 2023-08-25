@@ -1,4 +1,4 @@
-.poseContainer {
+.camContainer {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -6,25 +6,11 @@
   overflow: hidden;
   flex-shrink: 0;
   width: 100%;
-  border-radius: 1rem;
-  border: 1px solid black;
-  box-shadow:
-    1px 1px 2px #00000083,
-    inset 3px 4px 5px #0000003f;
 }
 
-.poseContainer > * {
+.camContainer > * {
   grid-row: 1;
   grid-column: 1;
-}
-
-.pageContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: var(--spacerLg);
-  width: 100%;
 }
 
 .controls {
@@ -35,4 +21,8 @@
   justify-content: flex-end;
   padding: var(--spacerSm);
   gap: var(--spacerSm);
+}
+
+.webcam {
+  object-fit: cover;
 }
