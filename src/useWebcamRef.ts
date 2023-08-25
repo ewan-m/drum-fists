@@ -16,7 +16,7 @@ export const useWebcamRef = () => {
         }
         const stream = await navigator.mediaDevices.getUserMedia({
           video: {
-            facingMode: { ideal: "environment" },
+            facingMode: { ideal: "user" },
             width: { ideal: 1920 },
             height: { ideal: 1080 },
           },
