@@ -1,5 +1,6 @@
 import { FilesetResolver, ImageSegmenter } from "@mediapipe/tasks-vision";
 import { useEffect, useRef } from "react";
+import { baseUrl } from "./baseUrl";
 
 export const gestures = {
   UNKNOWN: 0,
@@ -30,7 +31,7 @@ export const useImageSegmenter = () => {
         vision.current,
         {
           baseOptions: {
-            modelAssetPath: "/deeplab_v3.tflite",
+            modelAssetPath: `${baseUrl}/deeplab_v3.tflite`,
             delegate: "GPU",
           },
           outputConfidenceMasks: false,

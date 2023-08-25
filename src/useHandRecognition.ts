@@ -1,5 +1,6 @@
 import { FilesetResolver, HandLandmarker } from "@mediapipe/tasks-vision";
 import { useEffect, useRef } from "react";
+import { baseUrl } from "./baseUrl";
 
 export const landmarkPoints = {
   WRIST: 0,
@@ -43,7 +44,7 @@ export const useHandRecognition = () => {
         vision.current,
         {
           baseOptions: {
-            modelAssetPath: "/hand_landmarker.task",
+            modelAssetPath: `${baseUrl}/hand_landmarker.task`,
             delegate: "GPU",
           },
           runningMode: "VIDEO",

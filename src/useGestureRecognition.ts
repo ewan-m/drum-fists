@@ -1,5 +1,6 @@
 import { FilesetResolver, GestureRecognizer } from "@mediapipe/tasks-vision";
 import { useEffect, useRef } from "react";
+import { baseUrl } from "./baseUrl";
 
 export const gestures = [
   "None",
@@ -32,7 +33,7 @@ export const useGestureRecognition = () => {
         vision.current,
         {
           baseOptions: {
-            modelAssetPath: "/gesture_recognizer.task",
+            modelAssetPath: `${baseUrl}/gesture_recognizer.task`,
             delegate: "GPU",
           },
           runningMode: "VIDEO",

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useLocalStorageState } from "./useLocalStorage";
+import { baseUrl } from "./baseUrl";
 
 const kicks = ["kick", "kick2", "kick3"];
 const snares = ["snare", "snare2", "snare3", "snare4", "snare5"];
@@ -19,7 +20,7 @@ export const useSound = (type: "KICK" | "SNARE") => {
     audioContext.current = new window.AudioContext();
 
     // Load the audio file
-    fetch(`/${(type === "KICK" ? kicks : snares)[soundIndex]}.wav`)
+    fetch(`${baseUrl}/${(type === "KICK" ? kicks : snares)[soundIndex]}.wav`)
       .then((response) => response.arrayBuffer())
       .then((buffer) => audioContext.current?.decodeAudioData(buffer))
       .then((decodedBuffer) => {
