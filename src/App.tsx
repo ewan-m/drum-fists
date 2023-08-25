@@ -127,7 +127,7 @@ export const App = () => {
         height={1080}
       ></canvas>
       <div className={style.info}>
-        <p className={style.logo}>drum fists</p>
+        <p className={style.logo}>drum fists v0.72</p>
         <p
           className={style.text}
           style={
