@@ -64,11 +64,11 @@ export const useSegmentationCanvas = (video: HTMLVideoElement | null) => {
             return;
           }
 
-          let imageData = canvasCtx.getImageData(
+          const imageData = canvasCtx.getImageData(
             0,
             0,
             video.videoWidth,
-            video.videoHeight
+            video.videoHeight,
           ).data;
           const mask = result.categoryMask.getAsFloat32Array();
           let j = 0;
@@ -85,7 +85,7 @@ export const useSegmentationCanvas = (video: HTMLVideoElement | null) => {
           const dataNew = new ImageData(
             uint8Array,
             video.videoWidth,
-            video.videoHeight
+            video.videoHeight,
           );
           canvasCtx.putImageData(dataNew, 0, 0);
 
@@ -93,7 +93,7 @@ export const useSegmentationCanvas = (video: HTMLVideoElement | null) => {
             state: "idle",
             lastProcessTime: newTime,
           };
-        }
+        },
       );
     }
   }, 5);

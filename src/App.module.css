@@ -8,7 +8,9 @@
   width: 100%;
   border-radius: 1rem;
   border: 1px solid black;
-  box-shadow: 1px 1px 2px #00000083, inset 3px 4px 5px #0000003f;
+  box-shadow:
+    1px 1px 2px #00000083,
+    inset 3px 4px 5px #0000003f;
 }
 
 .poseContainer > * {

@@ -26,7 +26,7 @@ export const useGestureRecognition = () => {
     }
     (async () => {
       vision.current = await FilesetResolver.forVisionTasks(
-        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
+        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm",
       );
       gestureRecognizer.current = await GestureRecognizer.createFromOptions(
         vision.current,
@@ -37,7 +37,7 @@ export const useGestureRecognition = () => {
           },
           runningMode: "VIDEO",
           numHands: 2,
-        }
+        },
       );
     })();
   }, []);

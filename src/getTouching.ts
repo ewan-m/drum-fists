@@ -8,7 +8,7 @@ export const fingerTips = [landmarkPoints.MIDDLE_FINGER_TIP];
 
 const getDistance = (
   pointA: NormalizedLandmark,
-  pointB: NormalizedLandmark
+  pointB: NormalizedLandmark,
 ): number => {
   const dx = pointB.x - pointA.x;
   const dy = pointB.y - pointA.y;
@@ -18,7 +18,7 @@ const getDistance = (
 };
 
 const getTouchingFingerOnHand = (
-  landmarks: NormalizedLandmark[] | undefined
+  landmarks: NormalizedLandmark[] | undefined,
 ): number | null => {
   if (!landmarks) {
     return null;
@@ -31,7 +31,7 @@ const getTouchingFingerOnHand = (
 
   const fixedWristToPinkyDistance = getDistance(
     landmarks[landmarkPoints.WRIST],
-    landmarks[landmarkPoints.PINKY_MCP]
+    landmarks[landmarkPoints.PINKY_MCP],
   );
 
   for (const tip of fingerTips) {
@@ -46,18 +46,18 @@ const getTouchingFingerOnHand = (
 };
 
 export const getTouching = (
-  result: HandLandmarkerResult
+  result: HandLandmarkerResult,
 ): {
   right: number | null;
   left: number | null;
 } => {
   const leftIndex =
     result.handednesses.find(
-      (category) => category[0].categoryName === "Left"
+      (category) => category[0].categoryName === "Left",
     )?.[0].index ?? -1;
   const rightIndex =
     result.handednesses.find(
-      (category) => category[0].categoryName === "Right"
+      (category) => category[0].categoryName === "Right",
     )?.[0].index ?? -1;
 
   return {
@@ -68,7 +68,7 @@ export const getTouching = (
     right:
       rightIndex !== -1
         ? getTouchingFingerOnHand(
-            result.landmarks[leftIndex !== -1 ? rightIndex : 0]
+            result.landmarks[leftIndex !== -1 ? rightIndex : 0],
           )
         : null,
   };

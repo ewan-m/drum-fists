@@ -3,7 +3,7 @@ import { landmarkPoints } from "./useHandRecognition";
 
 const getMeanCoordinates = (
   result: HandLandmarkerResult,
-  bodyParts: number[]
+  bodyParts: number[],
 ): [x: number, y: number] => {
   let summedX = 0;
   let summedY = 0;
@@ -18,7 +18,7 @@ const getMeanCoordinates = (
 };
 
 export const normalizeHand = (
-  result: HandLandmarkerResult
+  result: HandLandmarkerResult,
 ): HandLandmarkerResult => {
   const clonedResult: HandLandmarkerResult = JSON.parse(JSON.stringify(result));
 

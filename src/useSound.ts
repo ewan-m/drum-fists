@@ -28,9 +28,9 @@ export const useSound = (type: "KICK" | "SNARE") => {
         }
       })
       .catch((error) =>
-        console.error("Error loading or playing audio:", error)
+        console.error("Error loading or playing audio:", error),
       );
-  }, [soundIndex]);
+  }, [type, soundIndex]);
 
   const lastPlayTime = useRef<number>(0);
 
@@ -50,7 +50,7 @@ export const useSound = (type: "KICK" | "SNARE") => {
     () => {
       setSoundIndex(
         (current) =>
-          (current + 1) % (type === "KICK" ? kicks.length : snares.length)
+          (current + 1) % (type === "KICK" ? kicks.length : snares.length),
       );
     },
   ] as const;

@@ -18,7 +18,7 @@ export const useResultsCanvas = () => {
           0,
           0,
           canvasRef.current.width,
-          canvasRef.current.height
+          canvasRef.current.height,
         );
 
         const drawingUtils = new DrawingUtils(canvasCtx);
@@ -28,7 +28,7 @@ export const useResultsCanvas = () => {
             HandLandmarker.HAND_CONNECTIONS,
             {
               color: "#fff",
-            }
+            },
           );
           drawingUtils.drawLandmarks(
             [
@@ -45,11 +45,11 @@ export const useResultsCanvas = () => {
                   -0.15,
                   0.1,
                   40,
-                  1
+                  1,
                 ),
               fillColor: "#ef6fc7",
               color: "#ef6fc7",
-            }
+            },
           );
         }
       }
