@@ -42,5 +42,5 @@ export const useGestureRecognition = () => {
     })();
   }, []);
 
-  return gestureRecognizer.current;
+  return gestureRecognizer;
 };

@@ -37,14 +37,17 @@ export const App = () => {
     const newTime = (video?.currentTime ?? 0) * 1000;
 
     if (
-      gestureRecognizer &&
+      gestureRecognizer.current &&
       video &&
       newTime > 0 &&
       newTime !== processStream.current.lastProcessTime &&
       processStream.current.state === "idle"
     ) {
       processStream.current.state = "inFlight";
-      const result = gestureRecognizer.recognizeForVideo(video, newTime);
+      const result = gestureRecognizer.current.recognizeForVideo(
+        video,
+        newTime,
+      );
       rerender();
 
       let leftGesture: Gesture = "None";
@@ -60,26 +63,26 @@ export const App = () => {
           leftGesture === "Closed_Fist" &&
           leftGesture !== processStream.current.lastLeftGesture
         ) {
-          kick();
+          kick.play();
         }
         if (
           leftGesture === "Victory" &&
           leftGesture !== processStream.current.lastLeftGesture
         ) {
-          cycleKick();
+          kick.cycle();
         }
 
         if (
           rightGesture === "Closed_Fist" &&
           rightGesture !== processStream.current.lastRightGesture
         ) {
-          snare();
+          snare.play();
         }
         if (
           rightGesture === "Victory" &&
           rightGesture !== processStream.current.lastRightGesture
         ) {
-          cycleSnare();
+          snare.cycle();
         }
       }
 
@@ -92,8 +95,8 @@ export const App = () => {
     }
   }, 2);
 
-  const [snare, cycleSnare] = useSound("SNARE");
-  const [kick, cycleKick] = useSound("KICK");
+  const snare = useSound("SNARE");
+  const kick = useSound("KICK");
 
   // const segmentationCanvas = useSegmentationCanvas(webcamRef.current);
 
@@ -101,7 +104,7 @@ export const App = () => {
   const height = window.innerHeight;
 
   return (
-    <div className={style.camContainer}>
+    <div className={style.container}>
       <video
         className={style.webcam}
         style={{
@@ -123,6 +126,29 @@ export const App = () => {
         width={1920}
         height={1080}
       ></canvas>
+      <div className={style.info}>
+        <p className={style.logo}>drum fists</p>
+        <p
+          className={style.text}
+          style={
+            new Date().getTime() - kick.lastPlayTime < 150
+              ? { color: "red" }
+              : {}
+          }
+        >
+          L ✊ = {kick.name} (✌️ toggle)
+        </p>
+        <p
+          className={style.text}
+          style={
+            new Date().getTime() - snare.lastPlayTime < 150
+              ? { color: "red" }
+              : {}
+          }
+        >
+          R ✊ = {snare.name} (✌️ toggle)
+        </p>
+      </div>
     </div>
   );
 };
