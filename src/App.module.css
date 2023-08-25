@@ -34,6 +34,7 @@
     1px 1px 0 #000;
   padding: 0.25rem 1rem;
   z-index: 99;
+  background: transparent;
 }
 
 .logo {
@@ -42,7 +43,7 @@
   margin: 0;
 }
 .text {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1rem;
   margin: 0;
 }
