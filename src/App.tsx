@@ -129,12 +129,12 @@ export const App = () => {
         height={1080}
       ></canvas>
       <div className={style.info}>
-        <p className={style.logo}>drum fists v0.76</p>
+        <p className={style.logo}>drum fists v0.77</p>
         <p
           className={style.text}
           style={
             new Date().getTime() - kick.lastPlayTime < 150
-              ? { color: "red" }
+              ? { color: mainColor }
               : {}
           }
         >
