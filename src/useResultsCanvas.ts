@@ -34,6 +34,9 @@ export const useResultsCanvas = () => {
             [
               landmark[landmarkPoints.THUMB_TIP],
               landmark[landmarkPoints.MIDDLE_FINGER_TIP],
+              landmark[landmarkPoints.INDEX_FINGER_TIP],
+              landmark[landmarkPoints.RING_FINGER_TIP],
+              landmark[landmarkPoints.PINKY_TIP],
             ],
             {
               radius: (data) =>

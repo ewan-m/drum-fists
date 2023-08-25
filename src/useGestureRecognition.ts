@@ -1,16 +1,18 @@
 import { FilesetResolver, GestureRecognizer } from "@mediapipe/tasks-vision";
 import { useEffect, useRef } from "react";
 
-export const gestures = {
-  UNKNOWN: 0,
-  CLOSED_FIST: 1,
-  OPEN_PALM: 2,
-  POINTING_UP: 3,
-  THUMBS_DOWN: 4,
-  THUMBS_UP: 5,
-  VICTORY: 6,
-  LOVE: 7,
-};
+export const gestures = [
+  "None",
+  "Closed_Fist",
+  "Open_Palm",
+  "Pointing_Up",
+  "Thumb_Down",
+  "Thumb_Up",
+  "Victory",
+  "ILoveYou",
+] as const;
+
+export type Gesture = (typeof gestures)[number];
 
 export const useGestureRecognition = () => {
   const gestureRecognizer = useRef<GestureRecognizer | null>(null);

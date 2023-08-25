@@ -9,7 +9,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  background-color: #242424;
+  background-color: #fff;
 }
 
 body {
@@ -20,4 +20,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: url(/background.gif);
+  background-size: cover;
 }

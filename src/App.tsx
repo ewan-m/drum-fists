@@ -1,11 +1,10 @@
 import { useRef, useState } from "react";
-import { landmarkPoints, useHandRecognition } from "./useHandRecognition";
 import { useWebcamRef } from "./useWebcamRef";
 import { useInterval } from "./useInterval";
 import style from "./App.module.css";
 import { useResultsCanvas } from "./useResultsCanvas";
-import { getTouching } from "./getTouching";
 import { useSound } from "./useSound";
+import { Gesture, useGestureRecognition } from "./useGestureRecognition";
 
 const useRerender = () => {
   const [, setCount] = useState(0);
@@ -16,17 +15,21 @@ const useRerender = () => {
 };
 
 export const App = () => {
-  const handLandmarker = useHandRecognition();
+  const gestureRecogniser = useGestureRecognition();
   const webcamRef = useWebcamRef();
   const [canvasRef, drawResult] = useResultsCanvas();
   const rerender = useRerender();
 
   const processStream = useRef<{
     lastProcessTime: number;
-    state: "idle" | "inFlight" | "paused" | "loopMode";
+    state: "idle" | "inFlight";
+    lastLeftGesture: Gesture;
+    lastRightGesture: Gesture;
   }>({
     lastProcessTime: 0,
     state: "idle",
+    lastLeftGesture: "None",
+    lastRightGesture: "None",
   });
 
   useInterval(() => {
@@ -34,38 +37,65 @@ export const App = () => {
     const newTime = (video?.currentTime ?? 0) * 1000;
 
     if (
-      handLandmarker &&
+      gestureRecogniser &&
       video &&
       newTime > 0 &&
       newTime !== processStream.current.lastProcessTime &&
       processStream.current.state === "idle"
     ) {
       processStream.current.state = "inFlight";
-      const result = handLandmarker.detectForVideo(video, newTime);
+      const result = gestureRecogniser.recognizeForVideo(video, newTime);
       rerender();
+
+      let leftGesture: Gesture = "None";
+      let rightGesture: Gesture = "None";
 
       if (result && result.landmarks) {
         drawResult(result);
-        const touching = getTouching(result);
 
-        console.log(touching);
+        leftGesture = result.gestures[0]?.[0]?.categoryName as Gesture;
+        rightGesture = result.gestures[1]?.[0]?.categoryName as Gesture;
 
-        if (touching.right === landmarkPoints.MIDDLE_FINGER_TIP) {
+        if (
+          leftGesture === "Closed_Fist" &&
+          leftGesture !== processStream.current.lastLeftGesture
+        ) {
           kick();
-        } else if (touching.left === landmarkPoints.MIDDLE_FINGER_TIP) {
+        }
+        if (
+          leftGesture === "Victory" &&
+          leftGesture !== processStream.current.lastLeftGesture
+        ) {
+          cycleKick();
+        }
+
+        if (
+          rightGesture === "Closed_Fist" &&
+          rightGesture !== processStream.current.lastRightGesture
+        ) {
           snare();
+        }
+        if (
+          rightGesture === "Victory" &&
+          rightGesture !== processStream.current.lastRightGesture
+        ) {
+          cycleSnare();
         }
       }
 
       processStream.current = {
         state: "idle",
         lastProcessTime: newTime,
+        lastLeftGesture: leftGesture,
+        lastRightGesture: rightGesture,
       };
     }
-  }, 5);
+  }, 2);
 
-  const kick = useSound("/kick2.wav");
-  const snare = useSound("/snare3.wav");
+  const [snare, cycleSnare] = useSound("SNARE");
+  const [kick, cycleKick] = useSound("KICK");
+
+  // const segmentationCanvas = useSegmentationCanvas(webcamRef.current);
 
   return (
     <div className={style.pageContainer}>

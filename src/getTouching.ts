@@ -24,8 +24,6 @@ const getTouchingFingerOnHand = (
     return null;
   }
 
-  console.log(landmarks);
-
   const thumb = landmarks[landmarkPoints.THUMB_TIP];
 
   let bestFinger = null;

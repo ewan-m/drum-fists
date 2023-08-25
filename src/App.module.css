@@ -2,13 +2,13 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  border-radius: var(--spacerSm);
   place-items: left;
   overflow: hidden;
   flex-shrink: 0;
-  background-color: var(--foreground);
   width: 100%;
   border-radius: 1rem;
+  border: 1px solid black;
+  box-shadow: 1px 1px 2px #00000083, inset 3px 4px 5px #0000003f;
 }
 
 .poseContainer > * {
