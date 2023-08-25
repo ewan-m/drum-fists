@@ -6,6 +6,7 @@ import {
 } from "@mediapipe/tasks-vision";
 import { useRef } from "react";
 import { landmarkPoints } from "./useHandRecognition";
+import { mainColor } from "./App";
 
 export const useResultsCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -47,8 +48,8 @@ export const useResultsCanvas = () => {
                   40,
                   1,
                 ),
-              fillColor: "#ef6fc7",
-              color: "#ef6fc7",
+              fillColor: mainColor,
+              color: mainColor,
             },
           );
         }

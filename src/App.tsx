@@ -14,6 +14,8 @@ const useRerender = () => {
   };
 };
 
+export const mainColor = "#ef6fc7"
+
 export const App = () => {
   const gestureRecognizer = useGestureRecognition();
   const webcamRef = useWebcamRef();
@@ -127,7 +129,7 @@ export const App = () => {
         height={1080}
       ></canvas>
       <div className={style.info}>
-        <p className={style.logo}>drum fists v0.75</p>
+        <p className={style.logo}>drum fists v0.76</p>
         <p
           className={style.text}
           style={
@@ -142,7 +144,7 @@ export const App = () => {
           className={style.text}
           style={
             new Date().getTime() - snare.lastPlayTime < 150
-              ? { color: "red" }
+              ? { color: mainColor }
               : {}
           }
         >
