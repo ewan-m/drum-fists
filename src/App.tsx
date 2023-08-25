@@ -15,7 +15,7 @@ const useRerender = () => {
 };
 
 export const App = () => {
-  const gestureRecogniser = useGestureRecognition();
+  const gestureRecognizer = useGestureRecognition();
   const webcamRef = useWebcamRef();
   const [canvasRef, drawResult] = useResultsCanvas();
   const rerender = useRerender();
@@ -37,14 +37,14 @@ export const App = () => {
     const newTime = (video?.currentTime ?? 0) * 1000;
 
     if (
-      gestureRecogniser &&
+      gestureRecognizer &&
       video &&
       newTime > 0 &&
       newTime !== processStream.current.lastProcessTime &&
       processStream.current.state === "idle"
     ) {
       processStream.current.state = "inFlight";
-      const result = gestureRecogniser.recognizeForVideo(video, newTime);
+      const result = gestureRecognizer.recognizeForVideo(video, newTime);
       rerender();
 
       let leftGesture: Gesture = "None";
