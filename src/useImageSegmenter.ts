@@ -25,7 +25,7 @@ export const useImageSegmenter = () => {
     }
     (async () => {
       vision.current = await FilesetResolver.forVisionTasks(
-        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm",
+        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision/wasm",
       );
       imageSegmenter.current = await ImageSegmenter.createFromOptions(
         vision.current,
